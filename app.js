@@ -1,16 +1,10 @@
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
-require("dotenv").config();
-console.log(process.env.NODE_ENV);
 
-let dbConfig = require("./config");
-if (process.env.NODE_ENV === "development") {
-  dbConfig = dbConfig.development;
-} else {
-  dbConfig = dbConfig.production;
-}
-console.log(dbConfig);
+require("dotenv").config({
+  path: path.join(__dirname, `./.env.${process.env.NODE_ENV}`),
+});
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
@@ -47,9 +41,9 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
-console.log(`NODE_ENV=${process.env.NODE_ENV}`);
+console.log(`NODE_ENV=${process.env.NODE_ENV}${process.env.LOCAL_PORT}`);
 // set port, listen for requests
-const PORT = dbConfig.LOCAL_PORT || 80;
+const PORT = process.env.LOCAL_PORT || 80;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });

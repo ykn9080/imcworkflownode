@@ -9,4 +9,4 @@ ENV NODE_ENV $NODE_ENV
 ENV PATH="$PATH:/.etc"
 EXPOSE 80
 # RUN npm prune --production
-CMD npm start
+CMD npm run devstart
