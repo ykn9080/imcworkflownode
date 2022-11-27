@@ -1,0 +1,52 @@
+name: Local Server Docker Run
+
+on:
+  release:
+    types: [created]
+  workflow_dispatch: # Put here!!
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    #runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile.development
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/kikiworkflow:latest
+      - name: Run sshpass commands
+        uses: matheusvanzan/sshpass-action@v2
+        with:
+          host: kikibus.iptime.org
+          user: kikiuser
+          port: 3022
+          pass: 1055
+          run: |
+            echo docker create port:18011 name:kikiworkflow 으로 작업합니다...
+            echo
+            echo 1/5 docker login 
+            echo ...이미설정되있는걸로 알고 pass
+            wait
+            echo 2/5 docker pull
+            docker pull kikidockerhub/kikiworkflow
+            wait
+            echo 3/5 이전 버젼 삭제후 docker run
+            docker rm -f kikiworkflow
+            wait
+            docker run --name kikiworkflow -p 18011:8011 -d kikidockerhub/kikiworkflow
+            wait
+            echo 4/5 docker image prune
+            docker image prune -f
+            wait
+            echo 5/5 finished.  see at http://kikibus.iptime.org:18011
