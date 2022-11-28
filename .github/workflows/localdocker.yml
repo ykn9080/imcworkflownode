@@ -44,7 +44,7 @@ jobs:
             echo 3/5 이전 버젼 삭제후 docker run
             docker rm -f kikiworkflow
             wait
-            docker run --name kikiworkflow -p 18011:8011 -d kikidockerhub/kikiworkflow
+            docker run --name kikiworkflow --network kikinet -p 18011:8011 -d kikidockerhub/kikiworkflow
             wait
             echo 4/5 docker image prune
             docker image prune -f
