@@ -2,7 +2,7 @@ const db = require("../models");
 const _ = require("lodash");
 const convert = require("../middleware/CamelSnake");
 
-const axios = require("axios");
+// const axios = require("axios");
 /**
  * 변수를 path로 보내는 형태
  * @param {*} req
@@ -21,17 +21,17 @@ const replacementPathReturn = (req, paramArray) => {
   });
   return replacement;
 };
-const axiosRun = (method, url, data) => {
-  let options = {
-    method,
-    url,
-  };
-  if (data) options.data = data;
+// const axiosRun = (method, url, data) => {
+//   let options = {
+//     method,
+//     url,
+//   };
+//   if (data) options.data = data;
 
-  axios(options).catch(function (err) {
-    console.log("axios err", err); // 에러 처리 내용
-  });
-};
+//   axios(options).catch(function (err) {
+//     console.log("axios err", err); // 에러 처리 내용
+//   });
+// };
 const noResponseBody = async (queryOrProc, replacement, querytype, next) => {
   const originQuery = queryOrProc;
   let option = {
@@ -113,4 +113,4 @@ module.exports.replacementPathReturn = replacementPathReturn;
 module.exports.noResponseBody = noResponseBody;
 module.exports.commonQueryBody = commonQueryBody;
 module.exports.commonReturn = commonReturn;
-module.exports.axiosRun = axiosRun;
+// module.exports.axiosRun = axiosRun;
