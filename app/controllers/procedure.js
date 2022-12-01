@@ -17,15 +17,12 @@ const moment = require("moment");
 //   );
 // };
 
-// exports.getWorkbyManager = (req, res) => {
-//   console.log(req.body);
-//   let replacement = {
-//     routeId: req.body.routeId,
-//     date: req.body.date,
-//   };
-//   console.log(replacement);
-//   reqres.commonQueryBody("workbymanager(:routeId, :date)", replacement, res);
-// };
+exports.taskListByUser = (req, res) => {
+  console.log(req.params);
+  let replacement = req.params;
+
+  reqres.commonQueryBody("tasklistbyuser(:userId)", replacement, res);
+};
 
 // exports.userDetail = (req, res) => {
 //   reqres.commonQueryBody(" user_detail(:id)", req.params, res);

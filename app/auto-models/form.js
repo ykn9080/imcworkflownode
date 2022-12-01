@@ -41,7 +41,7 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "fk_task_idx",
+        name: "fk_task_form1_idx",
         using: "BTREE",
         fields: [
           { name: "task_id" },

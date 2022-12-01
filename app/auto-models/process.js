@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
     process_method: {
       type: DataTypes.STRING(45),
       allowNull: true,
-      comment: "결재,협의,재무협의,참조,회람"
+      comment: "시작,결재,협의,재무협의,참조,회람,완료"
     },
     user_id: {
       type: DataTypes.BIGINT,
@@ -40,6 +40,10 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id'
       }
     },
+    due_date: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
     task_id: {
       type: DataTypes.BIGINT,
       allowNull: true,
@@ -47,10 +51,6 @@ module.exports = function(sequelize, DataTypes) {
         model: 'task',
         key: 'id'
       }
-    },
-    due_date: {
-      type: DataTypes.DATE,
-      allowNull: true
     }
   }, {
     sequelize,
@@ -63,13 +63,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "id" },
-        ]
-      },
-      {
-        name: "fk_process_task1_idx",
-        using: "BTREE",
-        fields: [
-          { name: "task_id" },
         ]
       },
       {
@@ -98,6 +91,20 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "user_id" },
+        ]
+      },
+      {
+        name: "fk_task_process1_idx",
+        using: "BTREE",
+        fields: [
+          { name: "task_id" },
+        ]
+      },
+      {
+        name: "fk_process_task1_idx",
+        using: "BTREE",
+        fields: [
+          { name: "task_id" },
         ]
       },
     ]

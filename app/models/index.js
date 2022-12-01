@@ -1,7 +1,7 @@
 const dbConfig = process.env;
 const initModel = require("../auto-models/init-models");
 const Sequelize = require("sequelize");
-
+console.log(process.env.NODE_ENV, dbConfig.DB);
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,

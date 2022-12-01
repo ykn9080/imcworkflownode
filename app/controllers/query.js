@@ -7,6 +7,7 @@ const reqres = require("./requestResponse");
 }
  */
 exports.getQuery = (req, res) => {
+  console.log(req.body);
   reqres.commonQueryBody(req.body.query, req.body.replacements, res);
 };
 // exports.getRestbyDriverAndYearmonth = (req, res) => {

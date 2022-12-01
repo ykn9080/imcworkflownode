@@ -7,14 +7,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    task_id: {
-      type: DataTypes.BIGINT,
-      allowNull: true,
-      references: {
-        model: 'task',
-        key: 'id'
-      }
-    },
     process_id: {
       type: DataTypes.BIGINT,
       allowNull: true,
@@ -23,17 +15,21 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id'
       }
     },
-    decision: {
+    action: {
       type: DataTypes.STRING(45),
       allowNull: true,
       comment: "approve,decline,return,submit"
     },
-    decision_date: {
+    action_date: {
       type: DataTypes.DATE,
       allowNull: true
     },
     comment: {
       type: DataTypes.STRING(3000),
+      allowNull: true
+    },
+    user_id: {
+      type: DataTypes.BIGINT,
       allowNull: true
     }
   }, {
@@ -50,17 +46,17 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "fk_task_id_idx",
-        using: "BTREE",
-        fields: [
-          { name: "task_id" },
-        ]
-      },
-      {
         name: "fk_process_id_idx",
         using: "BTREE",
         fields: [
           { name: "process_id" },
+        ]
+      },
+      {
+        name: "fk_user_id_idx",
+        using: "BTREE",
+        fields: [
+          { name: "user_id" },
         ]
       },
     ]

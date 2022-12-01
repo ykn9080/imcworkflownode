@@ -13,10 +13,7 @@ module.exports = (app) => {
   app.use("/api/getQuery", query.getQuery);
   // app.use("/api/managerreplacelist", auth, proc.managerReplacelist);
   // app.use("/api/managerworkbydateandroute", proc.getWorkbyManager);
-  // app.use(
-  //   "/api/findshiftthismonth/:routeId/:yearMonth",
-  //   proc.findShiftThisMonth
-  // );
+  app.use("/api/tasklistbyuser/:userId", proc.taskListByUser);
   // app.use(
   //   "/api/leavedatebydriver/:routeId/:shift/:yearMonth",
   //   proc.leaveDateByDriver

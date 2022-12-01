@@ -30,7 +30,7 @@ module.exports = function(sequelize, DataTypes) {
     status: {
       type: DataTypes.STRING(45),
       allowNull: true,
-      comment: "pending, submitted,complete_reject, complete_approve"
+      comment: "preparing, pending, processing,rejected, approved"
     },
     due_date: {
       type: DataTypes.DATE,
