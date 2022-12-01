@@ -24,7 +24,7 @@ jobs:
           context: .
           file: ./Dockerfile.development
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/kikiworkflow:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/kikiworkorm:latest
       - name: Run sshpass commands
         uses: matheusvanzan/sshpass-action@v2
         with:
@@ -33,18 +33,18 @@ jobs:
           port: 3022
           pass: 1055
           run: |
-            echo docker create port:18011 name:kikiworkflow 으로 작업합니다...
+            echo docker create port:18011 name:kikiworkorm 으로 작업합니다...
             echo
             echo 1/5 docker login 
             echo ...이미설정되있는걸로 알고 pass
             wait
             echo 2/5 docker pull
-            docker pull kikidockerhub/kikiworkflow
+            docker pull kikidockerhub/kikiworkorm
             wait
             echo 3/5 이전 버젼 삭제후 docker run
-            docker rm -f kikiworkflow
+            docker rm -f kikiworkorm
             wait
-            docker run --name kikiworkflow --network kikinet -p 18011:8011 -d kikidockerhub/kikiworkflow
+            docker run --name kikiworkorm --network kikinet -p 18011:8011 -d kikidockerhub/kikiworkorm
             wait
             echo 4/5 docker image prune
             docker image prune -f

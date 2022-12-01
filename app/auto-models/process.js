@@ -26,11 +26,19 @@ module.exports = function(sequelize, DataTypes) {
     },
     division_id: {
       type: DataTypes.BIGINT,
-      allowNull: true
+      allowNull: true,
+      references: {
+        model: 'division',
+        key: 'id'
+      }
     },
     position_id: {
       type: DataTypes.BIGINT,
-      allowNull: true
+      allowNull: true,
+      references: {
+        model: 'position',
+        key: 'id'
+      }
     },
     task_id: {
       type: DataTypes.BIGINT,
@@ -39,10 +47,6 @@ module.exports = function(sequelize, DataTypes) {
         model: 'task',
         key: 'id'
       }
-    },
-    template_id: {
-      type: DataTypes.BIGINT,
-      allowNull: true
     },
     due_date: {
       type: DataTypes.DATE,
@@ -66,6 +70,27 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "task_id" },
+        ]
+      },
+      {
+        name: "fk_user_id_idx",
+        using: "BTREE",
+        fields: [
+          { name: "user_id" },
+        ]
+      },
+      {
+        name: "fk_division_id_idx",
+        using: "BTREE",
+        fields: [
+          { name: "division_id" },
+        ]
+      },
+      {
+        name: "fk_position_id_idx",
+        using: "BTREE",
+        fields: [
+          { name: "position_id" },
         ]
       },
       {

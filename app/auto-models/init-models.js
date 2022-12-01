@@ -26,8 +26,12 @@ function initModels(sequelize) {
   company.hasMany(division, { as: "divisions", foreignKey: "comp_id"});
   user.belongsTo(company, { as: "comp", foreignKey: "comp_id"});
   company.hasMany(user, { as: "users", foreignKey: "comp_id"});
+  process.belongsTo(division, { as: "division", foreignKey: "division_id"});
+  division.hasMany(process, { as: "processes", foreignKey: "division_id"});
   user.belongsTo(division, { as: "div", foreignKey: "div_id"});
   division.hasMany(user, { as: "users", foreignKey: "div_id"});
+  process.belongsTo(position, { as: "position", foreignKey: "position_id"});
+  position.hasMany(process, { as: "processes", foreignKey: "position_id"});
   user.belongsTo(position, { as: "po", foreignKey: "pos_id"});
   position.hasMany(user, { as: "users", foreignKey: "pos_id"});
   activity.belongsTo(process, { as: "process", foreignKey: "process_id"});

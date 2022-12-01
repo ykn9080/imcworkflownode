@@ -4,7 +4,7 @@
  */
 const path = require("path");
 require("dotenv").config({
-  path: path.join(__dirname, `./.env.${process.env.NODE_ENV}`),
+  path: path.join(__dirname, `../.env.${process.env.NODE_ENV}`),
 });
 const dbConfig = process.env;
 console.log(process.env.NODE_ENV);
@@ -15,6 +15,7 @@ const auto = new SequelizeAuto(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   dialect: dbConfig.dialect,
   port: dbConfig.port,
   operatorsAliases: 0,
+  output: "./auto-model1",
   //noAlias: true // as 별칭 미설정 여부
 });
 

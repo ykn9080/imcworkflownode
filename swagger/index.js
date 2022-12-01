@@ -15,6 +15,7 @@ const swaggerUiOptions = {
         value: `${token}`,
       },
     },
+    docExpansion: "none",
   },
   persistAuthorization: true,
 };

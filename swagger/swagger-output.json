@@ -17,47 +17,26 @@
     }
   ],
   "paths": {
-    "/api/task/": {
+    "/api/task": {
       "get": {
-        "summary": "task list.",
-        "description": null,
+        "description": "",
+        "tags": ["task"],
+
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "description": "",
         "tags": ["task"],
         "responses": {
           "200": {
-            "description": "A JSON array of task info",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "name": {
-                      "type": "string",
-                      "example": "휴가신청"
-                    },
-                    "desc": {
-                      "type": "string",
-                      "example": "휴가를 신청함"
-                    },
-                    "creator_id": {
-                      "type": "int",
-                      "example": 1
-                    },
-                    "create_date": {
-                      "type": "datetime",
-                      "example": "2022-01-01T00:00:00.000Z"
-                    },
-
-                    "status": {
-                      "type": "string",
-                      "example": "진행중"
-                    },
-                    "due_date": {
-                      "type": "datetime",
-                      "example": "2022-01-01T00:00:00.000Z"
-                    }
-                  }
-                }
-              }
-            }
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
@@ -67,8 +46,748 @@
           },
           "403": {
             "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": ""
+                  },
+                  "descript": {
+                    "example": ""
+                  },
+                  "creator_id": {
+                    "example": ""
+                  },
+                  "create_date": {
+                    "example": ""
+                  },
+                  "status": {
+                    "example": ""
+                  },
+                  "due_date": {
+                    "example": ""
+                  }
+                }
+              }
+            }
           }
         }
+      }
+    },
+    "/api/task/{id}": {
+      "get": {
+        "description": "",
+        "tags": ["task"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "tags": ["task"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": ""
+                  },
+                  "descript": {
+                    "example": ""
+                  },
+                  "creator_id": {
+                    "example": ""
+                  },
+                  "create_date": {
+                    "example": ""
+                  },
+                  "status": {
+                    "example": ""
+                  },
+                  "due_date": {
+                    "example": ""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "tags": ["task"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+
+    "/api/user": {
+      "get": {
+        "description": "",
+        "tags": ["user"],
+
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "tags": ["user"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": ""
+                  },
+                  "emp_id": {
+                    "example": ""
+                  },
+                  "comp_id": {
+                    "example": ""
+                  },
+                  "division_id": {
+                    "example": ""
+                  },
+                  "position_id": {
+                    "example": ""
+                  },
+                  "boss_id": {
+                    "example": ""
+                  },
+                  "is_head": {
+                    "example": ""
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/{id}": {
+      "get": {
+        "description": "",
+        "tags": ["user"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "tags": ["user"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": ""
+                  },
+                  "emp_id": {
+                    "example": ""
+                  },
+                  "comp_id": {
+                    "example": ""
+                  },
+                  "division_id": {
+                    "example": ""
+                  },
+                  "position_id": {
+                    "example": ""
+                  },
+                  "boss_id": {
+                    "example": ""
+                  },
+                  "is_head": {
+                    "example": ""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "tags": ["user"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+
+    "/api/process": {
+      "get": {
+        "description": "",
+        "tags": ["process"],
+
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "tags": ["process"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "seq": {
+                    "example": ""
+                  },
+                  "process_method": {
+                    "example": ""
+                  },
+                  "user_id": {
+                    "example": ""
+                  },
+                  "division_id": {
+                    "example": ""
+                  },
+                  "position_id": {
+                    "example": ""
+                  },
+                  "task_id": {
+                    "example": ""
+                  },
+                  "due_date": {
+                    "example": ""
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/process/{id}": {
+      "get": {
+        "description": "",
+        "tags": ["process"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "tags": ["process"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "seq": {
+                    "example": ""
+                  },
+                  "process_method": {
+                    "example": ""
+                  },
+                  "user_id": {
+                    "example": ""
+                  },
+                  "division_id": {
+                    "example": ""
+                  },
+                  "position_id": {
+                    "example": ""
+                  },
+                  "task_id": {
+                    "example": ""
+                  },
+                  "due_date": {
+                    "example": ""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "tags": ["process"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+
+    "/api/activity": {
+      "get": {
+        "description": "",
+        "tags": ["activity"],
+
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "tags": ["activity"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "task_id": {
+                    "example": ""
+                  },
+                  "process_id": {
+                    "example": ""
+                  },
+                  "decision": {
+                    "example": ""
+                  },
+                  "decision_date": {
+                    "example": ""
+                  },
+                  "comment": {
+                    "example": ""
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/activity/{id}": {
+      "get": {
+        "description": "",
+        "tags": ["activity"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "tags": ["activity"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "task_id": {
+                    "example": ""
+                  },
+                  "process_id": {
+                    "example": ""
+                  },
+                  "decision": {
+                    "example": ""
+                  },
+                  "decision_date": {
+                    "example": ""
+                  },
+                  "comment": {
+                    "example": ""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "tags": ["activity"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+
+    "/api/form": {
+      "post": {
+        "description": "",
+        "tags": ["form"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "form_type": {
+                    "example": ""
+                  },
+                  "title": {
+                    "example": ""
+                  },
+                  "html": {
+                    "example": ""
+                  },
+                  "task_id": {
+                    "example": ""
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "tags": ["form"],
+
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/form/{id}": {
+      "get": {
+        "description": "",
+        "tags": ["form"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "tags": ["form"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "form_type": {
+                    "example": ""
+                  },
+                  "title": {
+                    "example": ""
+                  },
+                  "html": {
+                    "example": ""
+                  },
+                  "task_id": {
+                    "example": ""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "tags": ["form"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
       }
     }
   },
