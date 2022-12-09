@@ -14,6 +14,16 @@ module.exports = (app) => {
   // app.use("/api/managerreplacelist", auth, proc.managerReplacelist);
   // app.use("/api/managerworkbydateandroute", proc.getWorkbyManager);
   app.use("/api/tasklistbyuser/:userId", proc.taskListByUser);
+  app.use("/api/activitylistbyuser/:userId", proc.activityListByUser);
+  app.use("/api/ongoinglistbyuser/:userId", proc.onGoingListByUser);
+  app.use("/api/findformbytaskid/:taskId", proc.findFormbyTaskId);
+  app.use("/api/findformbyprocessid/:processId", proc.findFormbyProcessId);
+  app.use(
+    "/api/findTaskIdfromLinked/:linkedId/:linkType",
+    proc.findTaskIdfromLinked
+  );
+  app.use("/api/activityInsert", proc.activityInsert);
+
   // app.use(
   //   "/api/leavedatebydriver/:routeId/:shift/:yearMonth",
   //   proc.leaveDateByDriver

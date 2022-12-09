@@ -17,13 +17,61 @@ const moment = require("moment");
 //   );
 // };
 
+/**
+ * processId, activityId로 taskId 찾기
+ * @param {*} req linkedId(processId or activityId), linkType(process, activity)
+ * @param {*} res taskId
+ */
+exports.findTaskIdfromLinked = (req, res) => {
+  console.log(req.params);
+  let replacement = req.params;
+
+  reqres.commonQueryBody(
+    "findTaskIdfromLinked(:linkedId,:linkType)",
+    replacement,
+    res
+  );
+};
+exports.findFormbyTaskId = (req, res) => {
+  console.log(req.params);
+  let replacement = req.params;
+
+  reqres.commonQueryBody("findFormbyTaskId(:taskId)", replacement, res);
+};
+exports.findFormbyProcessId = (req, res) => {
+  console.log(req.params);
+  let replacement = req.params;
+
+  reqres.commonQueryBody("findFormbyProcessId(:processId)", replacement, res);
+};
+exports.activityInsert = (req, res) => {
+  console.log(req.body);
+  let replacement = req.body;
+
+  reqres.commonQueryBody(
+    "activityInsert(:processId, :action,:comment,:userId)",
+    replacement,
+    res
+  );
+};
 exports.taskListByUser = (req, res) => {
   console.log(req.params);
   let replacement = req.params;
 
   reqres.commonQueryBody("tasklistbyuser(:userId)", replacement, res);
 };
+exports.onGoingListByUser = (req, res) => {
+  console.log(req.params);
+  let replacement = req.params;
 
+  reqres.commonQueryBody("onGoingListbyUser(:userId)", replacement, res);
+};
+exports.activityListByUser = (req, res) => {
+  console.log(req.params);
+  let replacement = req.params;
+
+  reqres.commonQueryBody("activitylistbyuser(:userId)", replacement, res);
+};
 // exports.userDetail = (req, res) => {
 //   reqres.commonQueryBody(" user_detail(:id)", req.params, res);
 // };
