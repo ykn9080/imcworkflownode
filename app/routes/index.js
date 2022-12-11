@@ -5,6 +5,8 @@ const auth = require("../middleware/auth");
 module.exports = (app) => {
   const models = require("../models");
   require("./reuseCRUD")(app);
+  require("./docx")(app);
+  require("./docx1")(app);
   app.get("/", function (req, res, next) {
     res.render("index", { title: "Express" });
   });
@@ -22,7 +24,12 @@ module.exports = (app) => {
     "/api/findTaskIdfromLinked/:linkedId/:linkType",
     proc.findTaskIdfromLinked
   );
+  app.use("/api/tempFormListByUser/:userId", proc.tempFormListByUser);
+  app.use("/api/formwithTask/:formId", proc.formwithTask);
+
   app.use("/api/activityInsert", proc.activityInsert);
+  //최초르 결재문서를 생성한후 상신할때 사용(상신, 결재를 동시에 입력)
+  app.use("/api/activityStart", proc.activityStart);
 
   // app.use(
   //   "/api/leavedatebydriver/:routeId/:shift/:yearMonth",

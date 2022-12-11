@@ -23,14 +23,28 @@ const moment = require("moment");
  * @param {*} res taskId
  */
 exports.findTaskIdfromLinked = (req, res) => {
-  console.log(req.params);
   let replacement = req.params;
-
+  console.log(req.params);
   reqres.commonQueryBody(
     "findTaskIdfromLinked(:linkedId,:linkType)",
     replacement,
     res
   );
+};
+/**
+ * user별로 아직 상신하지 않고 임시저장된 form list
+ * @param {*} req userId
+ * @param {*} res formlist
+ */
+exports.tempFormListByUser = (req, res) => {
+  let replacement = req.params;
+
+  reqres.commonQueryBody("tempFormListByUser(:userId)", replacement, res);
+};
+exports.formwithTask = (req, res) => {
+  let replacement = req.params;
+
+  reqres.commonQueryBody("formwithTask(:formId)", replacement, res);
 };
 exports.findFormbyTaskId = (req, res) => {
   console.log(req.params);
@@ -54,6 +68,16 @@ exports.activityInsert = (req, res) => {
     res
   );
 };
+/**
+ *
+ * @param {*} req taskId
+ * @param {*} res process중 처음 2개를 inser함
+ */
+exports.activityStart = (req, res) => {
+  let replacement = req.params;
+  reqres.commonQueryBody("activityStart(:taskId)", replacement, res);
+};
+
 exports.taskListByUser = (req, res) => {
   console.log(req.params);
   let replacement = req.params;
@@ -72,24 +96,7 @@ exports.activityListByUser = (req, res) => {
 
   reqres.commonQueryBody("activitylistbyuser(:userId)", replacement, res);
 };
-// exports.userDetail = (req, res) => {
-//   reqres.commonQueryBody(" user_detail(:id)", req.params, res);
-// };
 
-// exports.findShiftThisMonth = (req, res) => {
-//   reqres.commonQueryBody(
-//     "find_shift_this_month(:routeId, :yearMonth)",
-//     req.params,
-//     res
-//   );
-// };
-// exports.leaveDateByDriver = (req, res) => {
-//   reqres.commonQueryBody(
-//     "leave_date_by_driver(:routeId, :shift, :yearMonth)",
-//     req.params,
-//     res
-//   );
-// };
 // exports.getRestbyManagerAndYearmonth = (req, res) => {
 //   if (req.id === undefined) req.id = null;
 //   let replacement = req.params;
@@ -100,66 +107,6 @@ exports.activityListByUser = (req, res) => {
 //     res
 //   );
 // };
-
-// exports.dailyBusnumWorknumYearMonth = (req, res) => {
-//   if (req.id === undefined) req.id = null;
-//   let replacement = req.params;
-//   replacement.managerId = req.id;
-//   reqres.commonQueryBody(
-//     "daily_busnum_worknum_yearMonth(:managerId, :routeId, :yearMonth)",
-//     replacement,
-//     res
-//   );
-// };
-// exports.schedulePeriodFind = (req, res) => {
-//   reqres.commonQueryBody(
-//     "schedule_period_find(:routeId, :yearMonth)",
-//     req.params,
-//     res
-//   );
-// };
-
-// exports.leaveSummaryByDriver = (req, res) => {
-//   if (req.id === undefined) req.id = null;
-//   let replacement = req.params;
-//   replacement.managerId = req.id;
-//   reqres.commonQueryBody(
-//     "leave_summary_by_driver(:managerId,:routeId, :date)",
-//     replacement,
-//     res
-//   );
-// };
-// exports.motionAnalysis = (req, res) => {
-//   if (req.id === undefined) req.id = null;
-//   let replacement = req.params;
-//   replacement.managerId = req.id;
-//   reqres.commonQueryBody(
-//     "motion_analysis(:managerId,:routeId, :yearMonth)",
-//     replacement,
-//     res
-//   );
-// };
-
-// exports.dispatchBasis = (req, res) => {
-//   let replacement = req.params;
-//   //  replacement.managerId = req.id;
-//   reqres.commonQueryBody("dispatch_basis(:routeId, :cdate)", replacement, res);
-// };
-// exports.dispatchHistory = (req, res) => {
-//   let replacement = req.params;
-//   reqres.commonQueryBody(
-//     "dispatch_history(:routeId, :weekDay)",
-//     replacement,
-//     res
-//   );
-// };
-// exports.dispatchList1 = async (req, res) => {
-//   if (req.id === undefined) req.id = null;
-//   let option = {
-//     replacements: req.params,
-//     type: db.sequelize.QueryTypes["select"],
-//     plain: true,
-//   };
 
 //   let queryOrProc = "CALL dispatch_list(:routeId, :datetime)";
 //   const rtn = await db.sequelize.query(queryOrProc, option);
