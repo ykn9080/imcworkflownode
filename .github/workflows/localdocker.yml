@@ -3,7 +3,7 @@ name: Local Server Docker Run
 on:
   push:
     branches:
-      - main
+      - master
   release:
     types: [created]
   workflow_dispatch: # Put here!!
