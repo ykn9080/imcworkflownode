@@ -24,7 +24,9 @@ module.exports = (app) => {
     "/api/findTaskIdfromLinked/:linkedId/:linkType",
     proc.findTaskIdfromLinked
   );
-  app.use("/api/tempFormListByUser/:userId", proc.tempFormListByUser);
+  app.use("/api/formImsiByUser/:userId", proc.formImsiByUser);
+  app.use("/api/formArchiveByUser/:userId", proc.formArchiveByUser);
+
   app.use("/api/formwithTask/:formId", proc.formwithTask);
 
   app.use("/api/activityInsert", proc.activityInsert);

@@ -36,10 +36,20 @@ exports.findTaskIdfromLinked = (req, res) => {
  * @param {*} req userId
  * @param {*} res formlist
  */
-exports.tempFormListByUser = (req, res) => {
+exports.formImsiByUser = (req, res) => {
   let replacement = req.params;
 
-  reqres.commonQueryBody("tempFormListByUser(:userId)", replacement, res);
+  reqres.commonQueryBody("formImsiByUser(:userId)", replacement, res);
+};
+/**
+ * user별 formTemplate list
+ * @param {*} req userId
+ * @param {*} res 자신이 만든 것과 전사 공유 formTemplate list
+ */
+exports.formArchiveByUser = (req, res) => {
+  let replacement = req.params;
+
+  reqres.commonQueryBody("formArchiveByUser(:userId)", replacement, res);
 };
 exports.formwithTask = (req, res) => {
   let replacement = req.params;
