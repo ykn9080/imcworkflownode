@@ -1,39 +1,40 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('form', {
+  return sequelize.define('activity_read', {
     id: {
       autoIncrement: true,
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true
     },
-    form_type: {
-      type: DataTypes.STRING(45),
-      allowNull: true
-    },
-    title: {
-      type: DataTypes.STRING(45),
-      allowNull: true
-    },
-    html: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    task_id: {
+    user_id: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
-        model: 'task',
+        model: 'user',
         key: 'id'
       }
     },
-    created: {
+    activity_id: {
+      type: DataTypes.BIGINT,
+      allowNull: true
+    },
+    read_date: {
       type: DataTypes.DATE,
       allowNull: true
+    },
+    like: {
+      type: DataTypes.TINYINT,
+      allowNull: true
+    },
+    is_read: {
+      type: DataTypes.TINYINT,
+      allowNull: true,
+      defaultValue: 0
     }
   }, {
     sequelize,
-    tableName: 'form',
+    tableName: 'activity_read',
     timestamps: false,
     indexes: [
       {
@@ -45,10 +46,10 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "fk_task_form1_idx",
+        name: "fk_activity_read_user_id_idx",
         using: "BTREE",
         fields: [
-          { name: "task_id" },
+          { name: "user_id" },
         ]
       },
     ]

@@ -14,6 +14,11 @@ module.exports = (Table) => {
           { stop_type: "ttt1" },
           { stop_type: "ttt1" },
         ]
+        User.bulkCreate([
+          { firstName: "Nathan", lastName: "Sebhastian" },
+          { firstName: "Jack", lastName: "Stark" },
+          { firstName: "John", lastName: "Snow" },
+        ]).then(() => console.log("Users data have been saved"));
        */
 
       const data = convert.toSnakeObjArray(req.body.data);
@@ -202,7 +207,7 @@ module.exports = (Table) => {
       .then((data) => {
         return res.send({
           status: 200,
-          object: data,
+          object: convert.toCamel(data.get({ plain: true })),
         });
       })
       .catch((err) => {

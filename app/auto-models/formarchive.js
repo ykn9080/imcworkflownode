@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('form', {
+  return sequelize.define('formarchive', {
     id: {
       autoIncrement: true,
       type: DataTypes.BIGINT,
@@ -19,21 +19,26 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: true
     },
-    task_id: {
-      type: DataTypes.BIGINT,
-      allowNull: true,
-      references: {
-        model: 'task',
-        key: 'id'
-      }
-    },
     created: {
       type: DataTypes.DATE,
       allowNull: true
+    },
+    descript: {
+      type: DataTypes.STRING(3000),
+      allowNull: true
+    },
+    writer_id: {
+      type: DataTypes.BIGINT,
+      allowNull: true
+    },
+    is_open: {
+      type: DataTypes.TINYINT,
+      allowNull: true,
+      comment: "1:전사에 공통 사용\n0: 자신만 사용"
     }
   }, {
     sequelize,
-    tableName: 'form',
+    tableName: 'formarchive',
     timestamps: false,
     indexes: [
       {
@@ -42,13 +47,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "id" },
-        ]
-      },
-      {
-        name: "fk_task_form1_idx",
-        using: "BTREE",
-        fields: [
-          { name: "task_id" },
         ]
       },
     ]
