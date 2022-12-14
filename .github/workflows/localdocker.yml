@@ -47,7 +47,7 @@ jobs:
             echo 3/5 이전 버젼 삭제후 docker run
             docker rm -f imcworkflownode
             wait
-            docker run --name imcworkflownode --network kongnet -p 8011:8011 -d yknam/imcworkflownode
+            docker run --name imcworkflownode --network kong-net -p 8011:8011 -d yknam/imcworkflownode
             wait
             echo 4/5 docker image prune
             docker image prune -f

@@ -29,7 +29,7 @@ services:
         - NODE_ENV=development
     env_file: ./.env.development
     networks:
-      - kongnet
+      - kong-net
     ports:
       - 8011:8011
     #environment:
@@ -48,6 +48,6 @@ services:
 #         name: maria-data
 #     db:
 networks:
-    kongnet:
+    kong-net:
         driver: bridge
-        name: kongnet
+        name: kong-net
