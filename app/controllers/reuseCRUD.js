@@ -251,8 +251,10 @@ module.exports = (Table) => {
         where: condition,
       })
         .then((num) => {
+          console.log("num", num);
           if (num == 1) {
             res.send({
+              status: 200,
               message: "Updated successfully.",
             });
           } else {
