@@ -20,8 +20,8 @@ services:
     # --기존 container db와 연결할 경우 external_links
     # external_links:
     #   - mariadb
-    image: kikidockerhub/kikiworkorm
-    container_name: kikiworkorm
+    image: yknam/imcworkflownode
+    container_name: imcworkflownode
     build: 
       context: .
       dockerfile: Dockerfile
@@ -29,7 +29,7 @@ services:
         - NODE_ENV=production
     env_file: ./.env.production
     networks:
-      - kikinet
+      - kongnet
     ports:
       - 80:80
     #environment:
@@ -48,6 +48,6 @@ services:
 #         name: maria-data
 #     db:
 networks:
-    kikinet:
+    kongnet:
         driver: bridge
-        name: kikinet
+        name: kongnet

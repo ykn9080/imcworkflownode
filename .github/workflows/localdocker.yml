@@ -3,7 +3,7 @@ name: Local Server Docker Run
 on:
   push:
     branches:
-      - master
+      - main
   release:
     types: [created]
   workflow_dispatch: # Put here!!
@@ -27,29 +27,29 @@ jobs:
           context: .
           file: ./Dockerfile.development
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/kikiworkorm:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/imcworkflownode:latest
       - name: Run sshpass commands
         uses: matheusvanzan/sshpass-action@v2
         with:
-          host: kikibus.iptime.org
-          user: kikiuser
-          port: 3022
-          pass: 1055
+          host: imcmaster.iptime.org
+          user: root
+          port: 7070
+          pass: ykn9080
           run: |
-            echo docker create port:18011 name:kikiworkorm 으로 작업합니다...
+            echo docker create port:8011 name:imcworkflownode 으로 작업합니다...
             echo
             echo 1/5 docker login 
             echo ...이미설정되있는걸로 알고 pass
             wait
             echo 2/5 docker pull
-            docker pull kikidockerhub/kikiworkorm
+            docker pull yknam/imcworkflownode
             wait
             echo 3/5 이전 버젼 삭제후 docker run
-            docker rm -f kikiworkorm
+            docker rm -f imcworkflownode
             wait
-            docker run --name kikiworkorm --network kikinet -p 18011:8011 -d kikidockerhub/kikiworkorm
+            docker run --name imcworkflownode --network kongnet -p 8011:8011 -d yknam/imcworkflownode
             wait
             echo 4/5 docker image prune
             docker image prune -f
             wait
-            echo 5/5 finished.  see at http://kikibus.iptime.org:18011
+            echo 5/5 finished.  see at http://imcmaster.iptime.org:8011
